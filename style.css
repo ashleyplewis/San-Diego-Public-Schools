@@ -235,7 +235,7 @@ div.dataTables_scrollHead {
 
 .dataTable * {
   font-family: "Helvetica Neue", Arial;
-  font-size: 14px;
+  font-size: 14px !important;
   border: 0 !important;
 }
 
