@@ -238,7 +238,7 @@ table.dataTable thead th {
 }
 
 table.dataTable td {
-  padding-left: 18px;
+  padding-left: 18px !important;
 }
 
 .dataTable * {
