@@ -233,6 +233,11 @@ div.dataTables_scrollHead {
   color: #eee !important;
 }
 
+table.dataTable thead th {
+  padding: 6px 18px 6px 9px;
+  text-align: left;
+}
+
 .dataTable * {
   font-family: "Helvetica Neue", Arial;
   font-size: 14px !important;
