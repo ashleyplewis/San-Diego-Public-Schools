@@ -234,7 +234,7 @@ div.dataTables_scrollHead {
 }
 
 table.dataTable thead th {
-  padding: 6px 18px 6px 9px;
+  padding: 6px 18px 6px 9px !important;
   text-align: left;
 }
 
