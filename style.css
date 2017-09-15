@@ -237,6 +237,10 @@ table.dataTable thead th {
   text-align: left;
 }
 
+table.dataTable td {
+  padding-left: 18px;
+}
+
 .dataTable * {
   font-family: "Helvetica Neue", Arial;
   font-size: 14px !important;
