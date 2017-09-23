@@ -947,8 +947,14 @@ $(window).on('load', function() {
    */
    var mapData;
 
+   mapData = Tabletop.init({
+     key: googleDocURL,
+     callback: function(data, mapData) { onMapDataLoad(); }
+   });
+
+   /*
    $.ajax({
-       url:'csv/Options.csv',
+       url:'',
        type:'HEAD',
        error: function() {
          // Options.csv does not exist, so use Tabletop to fetch data from
@@ -967,7 +973,7 @@ $(window).on('load', function() {
            callback: onMapDataLoad
          });
        }
-   });
+   }); */
 
   /**
    * Reformulates documentSettings as a dictionary, e.g.
