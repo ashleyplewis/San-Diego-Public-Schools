@@ -94,6 +94,7 @@ $(window).on('load', function() {
     return layers;
   }
 
+  var pointsToMarkers = {};
   /**
    * Assigns points to appropriate layers and clusters them if needed
    */
@@ -135,6 +136,7 @@ $(window).on('load', function() {
         }
 
         markerArray.push(marker);
+        pointsToMarkers[point.School + point.Location] = marker;
       }
     }
 
@@ -204,16 +206,16 @@ $(window).on('load', function() {
         }
       }
 
-      // Update table every time the map is moved/zoomed or point layers are toggled
+      // Update table every time the map is moved/zoomed or group layers are toggled
       map.on('moveend', updateTable);
-      map.on('layeradd', updateTable);
-      map.on('layerremove', updateTable);
+      map.on('overlayadd', updateTable);
+      map.on('overlayremove', updateTable);
 
       // Clear table data and add only visible markers to it
       function updateTable() {
         var pointsVisible = [];
         for (i in points) {
-          if (map.hasLayer(layers[points[i].Group]) &&
+          if (map.hasLayer(pointsToMarkers[points[i].School + points[i].Location]) &&
               map.getBounds().contains(L.latLng(points[i].Latitude, points[i].Longitude))) {
             pointsVisible.push(points[i]);
           }
@@ -260,6 +262,7 @@ $(window).on('load', function() {
     }
 
     completePoints = true;
+    addFilters(map, points, layers, pointsToMarkers);
     return group;
   }
 
@@ -572,7 +575,8 @@ $(window).on('load', function() {
 
     // Add polygon label if needed
     if (getPolygonSetting(polygon, '_polygonLabel') != '') {
-      var myTextLabel = L.marker(polylabel(layer.feature.geometry.coordinates, 1.0).reverse(), {
+      //var myTextLabel = L.marker(polylabel(layer.feature.geometry.coordinates, 1.0).reverse(), {
+      var myTextLabel = L.marker(layer.getBounds().getCenter(), {
         icon: L.divIcon({
           className: 'polygon-label' + polygon + ' polygon-label',
           html: feature.properties[getPolygonSetting(polygon, '_polygonLabel')],
@@ -952,28 +956,6 @@ $(window).on('load', function() {
      callback: function(data, mapData) { onMapDataLoad(); }
    });
 
-   /*
-   $.ajax({
-       url:'',
-       type:'HEAD',
-       error: function() {
-         // Options.csv does not exist, so use Tabletop to fetch data from
-         // the Google sheet
-         mapData = Tabletop.init({
-           key: googleDocURL,
-           callback: function(data, mapData) { onMapDataLoad(); }
-         });
-       },
-       success: function() {
-         // Get all data from .csv files
-         mapData = Procsv;
-         mapData.load({
-           self: mapData,
-           tabs: ['Options', 'Points', 'Polygons', 'Polylines'],
-           callback: onMapDataLoad
-         });
-       }
-   }); */
 
   /**
    * Reformulates documentSettings as a dictionary, e.g.
