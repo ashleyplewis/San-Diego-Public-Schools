@@ -5,17 +5,28 @@ function getCheckbox(p) {
 function addFilters(map, points, layers, ptm) {
 
   var props = [
+    'Charter',
+    'Non-Charter',
     'IB',
     'AVID',
     'Dual Language',
     'Arts',
     'Education Equity',
-    'US News',
-    'Charter'
+    'US News'
   ];
 
   // Property values for which filtering returns 'true'
-  var propsOK = ['x', 'y', 'gold', 'silver'];
+  //var propsOK = ['x', 'y', 'gold', 'silver'];
+  propsOK = {
+    'Charter': ['Charter', ['y']],
+    'Non-Charter': ['Charter', ['n']],
+    'IB': ['IB', ['x']],
+    'AVID': ['AVID', ['x']],
+    'Dual Language': ['Dual Language', ['x']],
+    'Arts': ['Arts', ['x']],
+    'Education Equity': ['Education Equity', ['x']],
+    'US News': ['US News', ['gold', 'silver']],
+  }
 
   $('.ladder:last').after('<div id="filter" \
     class="ladder leaflet-control leaflet-control-custom leaflet-bar"> \
@@ -25,6 +36,10 @@ function addFilters(map, points, layers, ptm) {
 
   for (i = 0; i < props.length; i++) {
     $('#filter div').append(getCheckbox(props[i]));
+
+    if (i == 1) {
+      $('#filter div').append('<h6><small>Special Distinctions</small></h6>');
+    }
   }
 
   map.on('overlayadd', function() {
@@ -32,14 +47,14 @@ function addFilters(map, points, layers, ptm) {
   });
 
   $('#filter input').change(function() {
-    checked = [];
+    activeFilters = [];
     for (i = 0; i < props.length; i++) {
       if ($('#filter input[value="' + props[i] + '"]').is(':checked')) {
-        checked.push(props[i]);
+        activeFilters.push(props[i]);
       }
     }
 
-    $('#filter h6 .counter').text(checked.length);
+    $('#filter h6 .counter').text(activeFilters.length);
 
     for (i = 0; i < points.length; i++) {
       var p = points[i];
@@ -61,8 +76,14 @@ function addFilters(map, points, layers, ptm) {
 
       pointRemoved = false;
 
-      for (prop = 0; prop < checked.length; prop++) {
-        if ($.inArray($.trim(p[checked[prop]]).toLowerCase(), propsOK) == -1) {
+      for (prop = 0; prop < activeFilters.length; prop++) {
+        if ($.inArray($.trim(p[propsOK[activeFilters[prop]][0]]).toLowerCase(), propsOK[activeFilters[prop]][1]) == -1) {
+          // Adding exception for 'Charter' and 'Non-Charter' selected at the same time
+          if (activeFilters[prop] == 'Charter' || activeFilters[prop] == 'Non-Charter') {
+            if ($.inArray('Charter', activeFilters) > -1 && $.inArray('Non-Charter', activeFilters) > -1) {
+              continue;
+            }
+          }
           map.removeLayer(markerLayer);
           pointRemoved = true;
           break;

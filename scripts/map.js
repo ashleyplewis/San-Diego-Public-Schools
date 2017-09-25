@@ -614,7 +614,7 @@ $(window).on('load', function() {
     }
 
     document.title = getSetting('_mapTitle');
-    addBaseMap();
+    var basemap = addBaseMap();
 
     // Add point markers to the map
     var points = mapData.sheets(constants.pointsSheetName);
@@ -689,6 +689,8 @@ $(window).on('load', function() {
       $(this).prepend(legendIcon);
     });
 
+    dataTableToggle(basemap);
+
     // When all processing is done, hide the loader and make the map visible
     showMap();
 
@@ -706,8 +708,8 @@ $(window).on('load', function() {
 
         $('.ladder h6').click(function() {
           if ($(this).hasClass('minimize')) {
-            $('.ladder h6').addClass('minimize');
-            $('.legend-arrow i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            //$('.ladder h6').addClass('minimize');
+            //$('.legend-arrow i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
             $(this).removeClass('minimize')
               .parent().find('.legend-arrow i')
               .removeClass('fa-chevron-down')
@@ -721,6 +723,7 @@ $(window).on('load', function() {
         });
 
         $('.ladder h6').get(0).click();
+        $('.ladder h6').get(1).click();
 
         $('#map').css('visibility', 'visible');
         $('.loader').hide();
@@ -904,12 +907,14 @@ $(window).on('load', function() {
    */
   function addBaseMap() {
     var basemap = trySetting('_tileProvider', 'CartoDB.Positron');
-    L.tileLayer.provider(basemap, {
+    var layer = L.tileLayer.provider(basemap, {
       maxZoom: 18
     }).addTo(map);
     L.control.attribution({
       position: trySetting('_mapAttribution', 'bottomright')
     }).addTo(map);
+
+    return layer;
   }
 
   /**
