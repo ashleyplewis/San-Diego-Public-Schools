@@ -55,6 +55,7 @@ h6 {
 
 .leaflet-popup-scrolled {
   border-top: 0 !important;
+  border-bottom: 0 !important;
 }
 
 .intro-popup {
@@ -321,7 +322,7 @@ span.legend-icon {
 
 .ladder {
   width: 270px;
-  margin-top: -3px !important;
+  margin-top: -5px !important;
   overflow: hidden;
 }
 
