@@ -400,6 +400,6 @@ input:checked + .slider:before {
 }
 
 #maptable tr:last-child td {
-  height: 50px;
+  height: 70px;
   vertical-align: top;
 }
