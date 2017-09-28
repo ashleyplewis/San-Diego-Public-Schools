@@ -14,11 +14,11 @@ function dataTableToggle(map) {
 
   $('#dataTableToggleDiv input').change(function() {
     if ($('#dataTableToggleDiv input').is(':checked')) {
-      $('#map').css('height', 'calc(60vh)');
+      $('#map').css('height', '60vh');
       $('#maptable_wrapper').css('visibility', 'visible');
     } else {
       $('#maptable_wrapper').css('visibility', 'hidden');
-      $('#map').css('height', '100vh');
+      $('#map').css('height', '100vh').css('height', '-=80px');
       map.invalidateSize();
     }
   });
