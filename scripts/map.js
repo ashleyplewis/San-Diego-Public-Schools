@@ -172,7 +172,6 @@ $(window).on('load', function() {
       });
 
       if (getSetting('_pointsLegendPos') !== 'off') {
-        //console.log(pointsLegend)
         pointsLegend.addTo(map);
         pointsLegend._container.id = 'points-legend';
         pointsLegend._container.className += ' ladder';
@@ -258,6 +257,9 @@ $(window).on('load', function() {
         info: false,
         searching: false,
         columns: generateColumnsArray(),
+        columnDefs: [
+          {'orderable': false, 'targets': [5,6,7,8]}
+        ]
       });
     }
 
@@ -613,6 +615,14 @@ $(window).on('load', function() {
       polygonSheets++;
     }
 
+    // Open popup on "Key & Definitions" click
+    $('#definitions').click(function() {
+      L.popup({maxWidth: 400, maxHeight: 400, keepInView: true})
+        .setLatLng(map.getCenter()) // this needs to change
+        .setContent(getSetting('_introPopupText'))
+        .openOn(map);
+    });
+
     document.title = getSetting('_mapTitle');
     var basemap = addBaseMap();
 
@@ -689,7 +699,7 @@ $(window).on('load', function() {
       $(this).prepend(legendIcon);
     });
 
-    dataTableToggle(basemap);
+    dataTableToggle(map);
 
     // When all processing is done, hide the loader and make the map visible
     showMap();
@@ -729,9 +739,10 @@ $(window).on('load', function() {
         $('.loader').hide();
 
         // Open intro popup window in the center of the map
+        /*
         if (getSetting('_introPopupText') != '') {
           initIntroPopup(getSetting('_introPopupText'), map.getCenter());
-        };
+        }; */
 
         togglePolygonLabels();
       } else {
@@ -856,6 +867,7 @@ $(window).on('load', function() {
     }
 
     /* And this is a standard popup for bigger screens */
+
     L.popup({className: 'intro-popup'})
       .setLatLng(coordinates) // this needs to change
       .setContent(info)

@@ -5,12 +5,36 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  font-family: "Helvetica Neue", Arial;
 }
 
 #map {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 80px);
   visibility: hidden;
+}
+
+#header {
+  height: 80px;
+  background-color: #353735;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#header img {
+  height: 40px;
+  padding: 20px;
+}
+
+#header a {
+  float: right;
+  display: block;
+  font-size: 16px;
+  margin: 30px 30px 0 0;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 h3 {
@@ -27,6 +51,24 @@ h5 {
 h6 {
   margin: 0;
   font-size: 1.2em;
+}
+
+.leaflet-popup-scrolled {
+  border-top: 0 !important;
+}
+
+.intro-popup {
+  position: absolute;
+  top: 10vh;
+  max-height: 80vh;
+  left: calc(50vw - 300px);
+  width: 600px;
+  overflow-y: scroll;
+  z-index: 999;
+}
+
+.intro-popup .leaflet-popup-content {
+  width: 100%;
 }
 
 .intro-popup .leaflet-popup-tip-container {
@@ -167,7 +209,6 @@ form {
   opacity: 0.9;
   border: 5px #ddd solid;
   border-radius: 5px;
-  font-family: "Helvetica Neue", Arial;
 }
 
 #mobile-intro-popup p {
@@ -243,7 +284,6 @@ table.dataTable td {
 }
 
 .dataTable * {
-  font-family: "Helvetica Neue", Arial;
   font-size: 14px !important;
   border: 0 !important;
 }
@@ -281,7 +321,7 @@ span.legend-icon {
 
 .ladder {
   width: 270px;
-  margin-top: 0 !important;
+  margin-top: -3px !important;
   overflow: hidden;
 }
 

@@ -30,7 +30,7 @@ function addFilters(map, points, layers, ptm) {
 
   $('.ladder:last').after('<div id="filter" \
     class="ladder leaflet-control leaflet-control-custom leaflet-bar"> \
-      <h6 class="pointer minimize"><span class="legend-icon"><i class="fa fa-filter"></i></span>Filter (<span class="counter">0</span>)</h6> \
+      <h6 class="pointer minimize"><span class="legend-icon"><i class="fa fa-filter"></i></span>Filter</h6> \
       <div></div> \
     </div>');
 
@@ -38,7 +38,7 @@ function addFilters(map, points, layers, ptm) {
     $('#filter div').append(getCheckbox(props[i]));
 
     if (i == 1) {
-      $('#filter div').append('<h6><small>Special Distinctions</small></h6>');
+      $('#filter div').append('<p style="font-size: 1.1em; font-weight: bold; margin: 3px 0;">Special Distinctions</p>');
     }
   }
 
@@ -53,8 +53,6 @@ function addFilters(map, points, layers, ptm) {
         activeFilters.push(props[i]);
       }
     }
-
-    $('#filter h6 .counter').text(activeFilters.length);
 
     for (i = 0; i < points.length; i++) {
       var p = points[i];

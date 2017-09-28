@@ -1,5 +1,5 @@
-function dataTableToggle(basemap) {
-  $('.ladder:last').after('<div id="dataTableToggleDiv" \
+function dataTableToggle(map) {
+  $('.ladder:first').before('<div id="dataTableToggleDiv" \
     class="ladder leaflet-control leaflet-control-custom leaflet-bar"> \
       <h6 class="pointer"><span class="legend-icon"> \
         <i class="fa fa-table"></i></span>Data Table \
@@ -15,11 +15,11 @@ function dataTableToggle(basemap) {
   $('#dataTableToggleDiv input').change(function() {
     if ($('#dataTableToggleDiv input').is(':checked')) {
       $('#map').css('height', 'calc(60vh)');
-      $('#maptable_wrapper').css('display', 'block');
+      $('#maptable_wrapper').css('visibility', 'visible');
     } else {
-      $('#maptable_wrapper').css('display', 'none');
+      $('#maptable_wrapper').css('visibility', 'hidden');
       $('#map').css('height', '100vh');
-      basemap.redraw();
+      map.invalidateSize();
     }
   });
 }
