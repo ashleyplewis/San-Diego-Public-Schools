@@ -398,3 +398,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+#maptable tr:last-child td {
+  height: 50px;
+  vertical-align: top;
+}
