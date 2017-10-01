@@ -78,9 +78,10 @@ body {
   font-size: 15px;
 }
 
-.glossarizer_replaced {
+abbr {
   border-bottom: 1px dotted black;
   cursor: help;
+  text-decoration: none;
 }
 
 h3 {
