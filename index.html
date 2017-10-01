@@ -54,14 +54,26 @@
   <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 
+  <!-- Tooltip -->
+  <link rel="stylesheet" href="glossarizer/tooltip.css">
+
 </head>
 
 <body>
 
   <div class="loader">Loading...</div>
   <div id="header">
-    <img src="vosd.png" alt="Voice of San Diego Logo">
-    <a href="#" id="definitions">Key & Definitions</a>
+    <a href="http://voiceofsandiego.org/">
+      <img src="vosd.png" alt="Voice of San Diego Logo">
+    </a>
+    <div class="header-links">
+      <a href="#" id="definitions">Key & Definitions</a> |
+      <a href="http://voiceofsandiego.org/schools-guide" target="_blank">Parent's Guide Home</a>
+    </div>
+  </div>
+
+  <div id="sidebar">
+    <div id="sidebar-close"><i class="fa fa-times"></i></div>
   </div>
 
   <div id="map"></div>
@@ -81,8 +93,19 @@
   <script type="text/javascript" src="scripts/polylabel.js"></script>
   <script type="text/javascript" src="scripts/procsv.js"></script>
   <script type="text/javascript" src="scripts/filter.js"></script>
+  <script type="text/javascript" src="glossarizer/tooltip.js"></script>
+  <script type="text/javascript" src="glossarizer/jquery.glossarize.js"></script>
   <script type="text/javascript" src="scripts/map.js"></script>
   <script type="text/javascript" src="scripts/dataTableToggle.js"></script>
+
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-1966429-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)};
+    gtag('js', new Date());
+    gtag('config', 'UA-1966429-1');
+  </script>
 
 </body>
 </html>

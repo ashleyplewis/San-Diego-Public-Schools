@@ -10,12 +10,12 @@ body {
 
 #map {
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 70px);
   visibility: hidden;
 }
 
 #header {
-  height: 80px;
+  height: 70px;
   background-color: #353735;
   margin: 0;
   padding: 0;
@@ -23,29 +23,78 @@ body {
 }
 
 #header img {
-  height: 40px;
+  height: 30px;
   padding: 20px;
+  float: left;
 }
 
-#header a {
-  float: right;
-  display: block;
+.header-links {
+  margin-top: 26px;
+  margin-left: 20px;
+  position: relative;
+  float: left;
   font-size: 16px;
-  margin: 30px 30px 0 0;
-  color: white;
-  text-decoration: none;
   font-weight: bold;
+  color: white;
+}
+
+.header-links a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+#sidebar {
+  position: absolute;
+  z-index: 9999;
+  height: calc(100vh - 60px);
+  width: 300px;
+  right: 0;
+  top: 0;
+  background-color: #fff;
+  color: #353735;
+  padding: 30px 20px;
+  display: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  opacity: 0.9;
+}
+
+#sidebar-close {
+  position: absolute;
+  font-size: 30px;
+  top: 10px;
+  right: 10px;
+  color: #353735;
+  cursor: pointer;
+}
+
+#map-title-close {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  z-index: 999;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.glossarizer_replaced {
+  border-bottom: 1px dotted black;
+  cursor: help;
 }
 
 h3 {
-  margin: 0;
   font-size: 1.5em;
+  line-height: 1.2em;
+  margin: 0;
+  padding-bottom: 3px;
 }
 
 h5 {
-  margin: 0;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: normal;
+  line-height: 1.3em;
+  margin: 0;
 }
 
 h6 {

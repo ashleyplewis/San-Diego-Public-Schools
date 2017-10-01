@@ -10,6 +10,8 @@ $(window).on('load', function() {
   var completePolygons = false;
   var completePolylines = false;
 
+  var glossary;
+
   /**
    * Returns an Awesome marker with specified parameters
    */
@@ -193,7 +195,7 @@ $(window).on('load', function() {
     if (displayTable && columns.length > 1) {
       tableHeight = trySetting('_tableHeight', 40);
       if (tableHeight < 10 || tableHeight > 90) {tableHeight = 40;}
-      $('#map').css('height', (100 - tableHeight) + 'vh').css('height', '-=80px');
+      $('#map').css('height', (100 - tableHeight) + 'vh').css('height', '-=70px');
       map.invalidateSize();
 
       // Set background (and text) color of the table header
@@ -615,13 +617,22 @@ $(window).on('load', function() {
       polygonSheets++;
     }
 
+    $('#sidebar').append(getSetting('_introPopupText'));
+
     // Open popup on "Key & Definitions" click
     $('#definitions').click(function() {
+      $('#sidebar').css('display', 'block');
+      /*
       L.popup({maxWidth: 400, maxHeight: 400, keepInView: true})
         .setLatLng(map.getCenter()) // this needs to change
         .setContent(getSetting('_introPopupText'))
-        .openOn(map);
+        .openOn(map); */
     });
+
+    $('#sidebar-close').click(function() {
+      $('#sidebar').css('display', 'none');
+    });
+
 
     document.title = getSetting('_mapTitle');
     var basemap = addBaseMap();
@@ -732,8 +743,34 @@ $(window).on('load', function() {
           }
         });
 
-        $('.ladder h6').get(0).click();
-        $('.ladder h6').get(1).click();
+        // Add close (x) button to the map title
+        $('.map-title').append('<div id="map-title-close"><i class="fa fa-times"></i></div>');
+        $('#map-title-close').click(function() {
+          $('.map-title').css('display', 'none');
+        })
+
+        // Expand Points and Filter side menu
+        $('#points-legend h6').click();
+        $('#filter h6').click();
+
+        // Add Glossary
+        glossary = mapData.sheets('Glossary').elements;
+
+        map.on('popupopen', function(e) {
+          setTimeout(function() {
+            $('.leaflet-popup-content').glossarizer({
+              sourceURL: glossary,
+              lookupTagName: 'strong',
+              callback: function() {
+                new tooltip();
+              }
+            });
+          }, 200);
+        });
+
+
+        // Hide Data Table
+        $('#dataTableToggleDiv input').change();
 
         $('#map').css('visibility', 'visible');
         $('.loader').hide();
