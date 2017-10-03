@@ -149,11 +149,13 @@ $(window).on('load', function() {
 
     var schoolSearch = new L.Control.Search({
       layer: group,
-      position: 'topright',
+      //position: 'topright',
       propertyName: 'School',
       initial: false,
-      //container: 'school-search'
-    }).addTo(map);
+      container: 'school-search'
+    });//.addTo(map);
+
+    map.addControl(schoolSearch);
 
     schoolSearch.on('search:locationfound', function(e) {
       e.layer.openPopup();

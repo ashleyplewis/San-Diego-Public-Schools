@@ -118,7 +118,6 @@ L.Control.Search = L.Control.extend({
 	},
 
 	initialize: function(options) {
-    console.log(options);
 		L.Util.setOptions(this, options || {});
 		this._inputMinSize = 30; //this.options.textPlaceholder ? this.options.textPlaceholder.length : 10;
 		this._layer = this.options.layer || new L.LayerGroup();

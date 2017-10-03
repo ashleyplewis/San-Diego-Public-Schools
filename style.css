@@ -141,15 +141,13 @@ h6 {
 }
 
 #school-search {
-  box-shadow: 0 0 0 0 !important;
-  padding: 0;
-  border: 0 !important;
-  height: 27px;
-  margin-bottom: 10px;
+  position: absolute !important;
+  top: 20px;
+  right: 15px;
 }
 
-#school-search div {
-  border: 1px solid;
+.leaflet-control-search {
+  z-index: 10000;
 }
 
 form {
