@@ -73,9 +73,10 @@ body {
   position: absolute;
   top: 0;
   right: 5px;
-  z-index: 999;
+  z-index: 9999;
   cursor: pointer;
   font-size: 15px;
+  padding: 0 0 10px 10px;
 }
 
 abbr {
@@ -137,6 +138,18 @@ h6 {
   box-shadow: 0 1px 5px rgba(0,0,0,0.4);
   color: #333;
   border-radius: 5px;
+}
+
+#school-search {
+  box-shadow: 0 0 0 0 !important;
+  padding: 0;
+  border: 0 !important;
+  height: 27px;
+  margin-bottom: 10px;
+}
+
+#school-search div {
+  border: 1px solid;
 }
 
 form {

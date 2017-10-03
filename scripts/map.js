@@ -128,7 +128,7 @@ $(window).on('load', function() {
         );
 
       if (point.Latitude !== '' && point.Longitude !== '') {
-        var marker = L.marker([point.Latitude, point.Longitude], {icon: icon})
+        var marker = L.marker([point.Latitude, point.Longitude], {icon: icon, School: point.School})
           .bindPopup("<b>" + point['Name'] + '</b><br>' +
           (point['Image'] ? ('<img src="' + point['Image'] + '"><br>') : '') +
           point['Description']);
@@ -144,6 +144,20 @@ $(window).on('load', function() {
 
     var group = L.featureGroup(markerArray);
     var clusters = (getSetting('_markercluster') === 'on') ? true : false;
+
+    //$('.leaflet-control-container .leaflet-top.leaflet-right').append('<div id="school-search" class="leaflet-bar leaflet-control"></div>');
+
+    var schoolSearch = new L.Control.Search({
+      layer: group,
+      position: 'topright',
+      propertyName: 'School',
+      initial: false,
+      //container: 'school-search'
+    }).addTo(map);
+
+    schoolSearch.on('search:locationfound', function(e) {
+      e.layer.openPopup();
+    });
 
     // if layers.length === 0, add points to map instead of layer
     if (layers === undefined || layers.length === 0) {
@@ -666,6 +680,7 @@ $(window).on('load', function() {
     }
 
     // Add Mapzen search control
+    /*
     if (getSetting('_mapSearch') !== 'off') {
       L.control.geocoder(getSetting('_mapSearchKey'), {
         focus: true,
@@ -675,7 +690,7 @@ $(window).on('load', function() {
         circleRadius: trySetting('_mapSearchCircleRadius', 1),
         autocomplete: true,
       }).addTo(map);
-    }
+    } */
 
     // Add location control
     if (getSetting('_mapMyLocation') !== 'off') {
