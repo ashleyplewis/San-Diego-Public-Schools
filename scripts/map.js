@@ -145,17 +145,13 @@ $(window).on('load', function() {
     var group = L.featureGroup(markerArray);
     var clusters = (getSetting('_markercluster') === 'on') ? true : false;
 
-    //$('.leaflet-control-container .leaflet-top.leaflet-right').append('<div id="school-search" class="leaflet-bar leaflet-control"></div>');
-
     var schoolSearch = new L.Control.Search({
       layer: group,
-      //position: 'topright',
       propertyName: 'School',
       initial: false,
-      container: 'school-search'
-    });//.addTo(map);
-
-    map.addControl(schoolSearch);
+      container: 'school-search',
+      firstTipSubmit: true
+    }).addTo(map);
 
     schoolSearch.on('search:locationfound', function(e) {
       e.layer.openPopup();
@@ -812,7 +808,7 @@ $(window).on('load', function() {
     var dispTitle = getSetting('_mapTitleDisplay');
 
     if (dispTitle !== 'off') {
-      var title = '<h3 class="pointer">' + getSetting('_mapTitle') + '</h3>';
+      var title = '<h3>' + getSetting('_mapTitle') + '</h3>';
       var subtitle = '<h5>' + getSetting('_mapSubtitle') + '</h5>';
 
       if (dispTitle == 'topleft') {
@@ -822,7 +818,7 @@ $(window).on('load', function() {
         $('.div-center').append('<div class="map-title leaflet-bar leaflet-control leaflet-control-custom">' + title + subtitle + '</div>');
       }
 
-      $('.map-title h3').click(function() { location.reload(); });
+      //$('.map-title h3').click(function() { location.reload(); });
     }
   }
 
