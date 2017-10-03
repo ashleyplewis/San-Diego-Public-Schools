@@ -757,9 +757,10 @@ $(window).on('load', function() {
         });
 
         // Add close (x) button to the map title
-        $('.map-title').append('<div id="map-title-close"><i class="fa fa-times"></i></div>');
-        $('#map-title-close').click(function() {
-          $('.map-title').css('display', 'none');
+        $('.map-title').append('<div id="map-title-close"><a href="#close" class="leaflet-popup-close-button"><i class="fa fa-times"></i></a></div>');
+
+        $('#map-title-close').on('click touchstart', function() {
+          $('.map-title').hide();
         })
 
         // Expand Points and Filter side menu

@@ -73,7 +73,7 @@ body {
   position: absolute;
   top: 0;
   right: 5px;
-  z-index: 9999;
+  z-index: 10000;
   cursor: pointer;
   font-size: 15px;
   padding: 0 0 10px 10px;
@@ -249,6 +249,7 @@ form {
  */
 .leaflet-right .map-title { display: none; }
 
+/*
 @media only screen and (max-width: 760px) {
   .leaflet-right .map-title {
     display: block;
@@ -258,7 +259,7 @@ form {
   .leaflet-left .map-title {
     width: 98%;
   }
-}
+} */
 
 #mobile-intro-popup {
   position: absolute;
