@@ -3,7 +3,7 @@ Customize Leaflet maps with a linked Google Sheets template and GeoJSON data on 
 
 ## Live links (replace with your own)
 - Leaflet Map https://ashleyplewis.github.io/San-Diego-Public-Schools/
-- Google Sheets template https://docs.google.com/spreadsheets/d/1EKhrz5RaO7vqqcUfngdWwHtfakG1GGw1Iv5jnbolvm8/edit#gid=0
+- Google Sheets template https://docs.google.com/spreadsheets/d/1QK3LQNWwJRRezCc4LRsFoMfY0TrYKtP_iLMGB2wCemI/edit#gid=0
 
 ## Create your own
 - See video with step-by-step tutorial in *Data Visualization for All* http://www.datavizforall.org/leaflet/with-google-sheets/
