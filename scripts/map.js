@@ -774,7 +774,7 @@ $(window).on('load', function() {
           setTimeout(function() {
             $('.leaflet-popup-content').glossarizer({
               sourceURL: glossary,
-              lookupTagName: 'strong',
+              lookupTagName: 'strong, span',
               callback: function() {
                 new tooltip();
               }
